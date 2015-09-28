@@ -50,7 +50,7 @@ class SessionManager(object):
         if cookie_config:
             expires = cookie_config.get("expires")
             expires_days = cookie_config.get("expires_days")
-            if expires_days is not None and not expires:
+            if expires_days is not None and expires: # fix expires value checking bug
                 expires = datetime.datetime.utcnow() + datetime.timedelta(days = expires_days)
             if expires and isinstance(expires, datetime.datetime):
                 self._expires = expires
